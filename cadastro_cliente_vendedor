@@ -1,0 +1,59 @@
+OBSERVAÇÃO:::::::::::::::
+
+FALTA IMPLEMENTAR O ID_MATRICULA, ESTOU PENSANDO NUMA FORMA DE GERAR ISSO AUTOMATICAMENTE DE FORMA SEQUENCIAL DE ACOROD COM OS REGISTROS, EXEMPLO O PRIMEIRO A SE REGISTRAR RECEBER O NUMERO 1 O SEGUNDO A SE REGISTRAR O NUMERO 2 E DAI POR DIANTE
+
+
+
+void cadastro_cliente_vendedor() {
+
+	// Variaveis locais da funcao
+
+	char nome[30], endereco[80], genero[3], data_nascimento[30], email[50], telefone[20];
+	double cpf, rg;
+
+
+	// Funcao do arquivo 
+	FILE* fptr;
+
+	fptr = fopen("cadastro_vendedor.txt", "a");
+
+	if (fptr == NULL) {
+		printf("lista de cadastro nao localizada");
+		}
+
+	printf("Nome & sobrenome: ");
+	gets(nome);
+
+	printf("\nGenero: M ou F: ");
+	gets(genero);
+
+	printf("\nEndereco: ");
+	gets(endereco);
+
+	printf("\nCPF(apenas numeros): ");
+	scanf("%lf", &cpf);
+
+	printf("\nRG(apenas numeros): ");
+	scanf("%lf", &rg);
+
+	printf("\nData de nascimento(Dia/mes/ano): ");
+	scanf("%s", &data_nascimento);
+
+	printf("\nNumero de telefone: ");
+	scanf("%s", &telefone);
+
+	printf("\nEmail para contato: ");
+	scanf("%s", email);
+
+
+	
+
+	fprintf(fptr, "Nome: %s \nGenero: %s \nEndereco: %s \nCPF: %.0lf \nRG: %.0lf \nData de nascimento: %s \nN° de Telefone: %s \nEmail:  %s \n", nome, genero, endereco, cpf, rg, data_nascimento, telefone, email);
+	fprintf(fptr, "\n\n");
+
+
+	fclose(fptr);
+
+
+
+}
