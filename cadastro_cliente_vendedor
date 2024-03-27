@@ -12,7 +12,7 @@ void cadastro_cliente_vendedor() {
 	double cpf, rg;
 
 
-	// Funcao do arquivo 
+	// Funcao para abrir arquivo, nome do arquivo = fptr ( filepointer, mas pode ser usado qualquer nome, exemplo:" FILE* cadastrovendedor; ")
 	FILE* fptr;
 
 	fptr = fopen("cadastro_vendedor.txt", "a");
@@ -20,6 +20,7 @@ void cadastro_cliente_vendedor() {
 	if (fptr == NULL) {
 		printf("lista de cadastro nao localizada");
 		}
+	// Testando se localizou o arquivo de texto.
 
 	printf("Nome & sobrenome: ");
 	gets(nome);
@@ -45,11 +46,15 @@ void cadastro_cliente_vendedor() {
 	printf("\nEmail para contato: ");
 	scanf("%s", email);
 
+	// printf e scanf padrao, para pegar informacoes do usuario, gets é usado para conseguir ler uma string composta, exemplo caso seja necessario o nome completo da pessoa, ex: George Lucas Torres Coelho.
+	// o scanf nao consegue captar o ' ' espaço, ele retorna um erro, por isso utilizo a funcao gets( getstring) e dentro basta digitar o nome da variavel.
 
 	
 
 	fprintf(fptr, "Nome: %s \nGenero: %s \nEndereco: %s \nCPF: %.0lf \nRG: %.0lf \nData de nascimento: %s \nN° de Telefone: %s \nEmail:  %s \n", nome, genero, endereco, cpf, rg, data_nascimento, telefone, email);
 	fprintf(fptr, "\n\n");
+
+	// Apenas printando todas as informaçoes que foram salvas nas variaveis para o arquivo de texto, para isso é utilizado o fprintf, seguida da seguinte syntax fprintf(nome do arquivo, "informacao a ser imprimida", variaveis a serem imprimidas);
 
 
 	fclose(fptr);
