@@ -1,0 +1,147 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+#define MAX_CARACTERES 100
+
+struct biblioteca {
+
+	int id_livro;
+	char nome[MAX_CARACTERES];
+	char categoria[MAX_CARACTERES];
+	char autor[MAX_CARACTERES];
+
+};
+struct biblioteca b[3];
+
+
+
+void cadLivro(struct biblioteca b[]) {
+
+	int i;
+	for (i = 0; i < 3; i++) {
+		printf("\nId: %d", i + 1);
+		printf("\nNome: ");
+		fgets(b[i].nome, sizeof(b[i].nome), stdin); // fgets( variavel que irá armazenar, tamanho da variavel, stdin ou stdout, stdin para captura informacao do usuario e stdout para imprimir)
+		printf("\nCategoria: ");
+		fgets(b[i].categoria, sizeof(b[i].categoria), stdin);
+		printf("\nAutor: ");
+		fgets(b[i].autor, sizeof(b[i].autor), stdin);
+		b[i].id_livro = i + 1;
+
+
+	}
+
+
+}
+
+void listarLivro(struct biblioteca b[]) {
+	system("CLS");
+	int i;
+
+	printf("Listando Livros\n\n");
+	for (i = 0; i < 3; i++) {
+		
+		printf("\nId do livro: %d", b[i].id_livro);
+		printf("\nNome: %s ", b[i].nome);
+		printf("\nCategoria: %s ", b[i].categoria);
+		printf("\nAutor: %s ", b[i].autor);
+		
+
+
+	}
+
+	
+
+}
+
+void buscaLivro(struct biblioteca b[]) {
+
+	int id;
+	char nome[MAX_CARACTERES];
+	char op;
+
+	printf("Buscador\n\n");
+
+	do {
+		
+		printf("Escolha o modo de busca\n");
+		printf("[1]ID\n");
+		printf("[2]Nome do livro\n");
+		printf("Escolha: ");
+		scanf(" %c", &op);
+		getchar(); // limpar buffer
+
+	} while (op < '1' || op > '2');
+
+	int i;
+
+	switch (op) {
+
+		case '1':
+			printf("Insira o ID do livro que deseja: ");
+			scanf("%d", &id);
+			getchar();
+			
+			for (i = 0; i < 3; i++) {
+				if (id == b[i].id_livro) {
+					printf("Livro localizado, segue detalhes\n");
+					printf("\nId do livro: %d", b[i].id_livro);
+					printf("\nNome: %s ", b[i].nome);
+					printf("\nCategoria: %s ", b[i].categoria);
+					printf("\nAutor: %s ", b[i].autor);
+
+				}
+			}
+			break;
+		case '2':
+			printf("Insira o nome do livro que deseja: ");
+			fgets(nome, sizeof(nome), stdin);
+
+			for (i = 0; i < 3; i++) {
+				if (strcmp(nome, b[i].nome) == 0) {
+					printf("Livro localizado, segue detalhes\n");
+					printf("\nId do livro: %d", b[i].id_livro);
+					printf("\nNome: %s ", b[i].nome);
+					printf("\nCategoria: %s ", b[i].categoria);
+					printf("\nAutor: %s ", b[i].autor);
+				}
+			}
+			break;
+	} // Final do switch
+
+
+
+
+} // Final da funcao
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int main() {
+
+	cadLivro(b);
+	listarLivro(b);
+	buscaLivro(b);
+
+
+
+
+	return 0;
+
+}
