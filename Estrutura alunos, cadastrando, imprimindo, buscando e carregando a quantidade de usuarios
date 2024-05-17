@@ -1,0 +1,144 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_CARACTERES 100
+#define MAX_CADASTROS 50
+
+/*
+
+Crie uma estrutura Aluno com os campos: nome, matrícula, idade e curso.
+Em seguida, 
+implemente funções para cadastrar um aluno, listar todos os alunos cadastrados e buscar um aluno pelo nome.
+
+*/
+
+struct aluno {
+	int id; // matricula
+	char nome[MAX_CARACTERES];
+	char curso[MAX_CARACTERES];
+	int idade;
+};
+struct aluno a[MAX_CADASTROS];
+
+
+int carregarAlunos(struct aluno a[],int numAluno) {
+
+	int qtAluno = 0;
+	for (int i = 0; i < numAluno; i++) {
+		if (a[i].idade != NULL) {
+			qtAluno++;
+		}
+
+	}
+	return qtAluno;
+}
+
+int cadAlunos(struct aluno a[], int id) {
+
+
+	
+	printf("Cadastro do aluno\n\n");
+	printf("ID: %d\n", id);
+	printf("\nNome: ");
+	fgets(a[id].nome, sizeof(a[id].nome), stdin);
+	printf("\nIdade: ");
+	scanf("%d", &a[id].idade);
+	getchar();
+	printf("\nCurso: ");
+	fgets(a[id].curso, sizeof(a[id].curso), stdin);
+
+	a[id].id = id; // definindo o id para a structure
+	id++;
+
+	return id;
+
+}
+
+int listarAlunos(struct aluno a[], int id) {
+
+	printf("Lista de todos alunos cadastrados\n\n");
+
+	int qtAluno = 0;
+
+	for (int i = 0; i < id ; i++) {
+
+	
+
+		printf("\nID: %d", a[i].id );
+		printf("\nNome: %s ",a[i].nome);
+		printf("\nIdade: %d ", a[i].idade);
+		printf("\nCurso: %s", a[i].curso);
+		printf("--------------------------\n\n");
+
+		qtAluno++;
+
+
+	}
+
+	return qtAluno; // Retornando a quantidade de alunos listados
+
+
+}
+
+int buscarAluno(struct aluno a[], int id) {
+
+	int i;
+	char nome[MAX_CARACTERES];
+	printf("Buscador de alunos\n");
+	printf("Insira o nome que deseja buscar: ");
+	fgets(nome, sizeof(nome), stdin);
+
+
+
+
+	for (i = 0; i < id; i++) {
+		if (strcmp(nome, a[i].nome) == 0) {
+			printf("Aluno localizado, informacoes abaixo:\n\n ");
+			printf("\nID: %d", a[i].id);
+			printf("\nNome: %s ", a[i].nome);
+			printf("\nIdade: %d ", a[i].idade);
+			printf("\nCurso: %s", a[i].curso);
+
+			return a[i].id; // Retornando o nome do buscado.
+
+		}
+	}
+
+
+
+}
+
+
+
+
+
+
+
+
+int main() {
+
+	int id = 0;
+	int totalAlunos = 0;
+	id = cadAlunos(a, id);
+	// id = 1
+	id = cadAlunos(a, id);
+	// id = 2
+	carregarAlunos(a, id);
+	totalAlunos = listarAlunos(a, id);
+	buscarAluno(a, id);
+
+
+
+	printf("\n\nO total de alunos cadastrados eh igual a %d", totalAlunos);
+
+
+
+
+
+
+
+	return 0;
+
+}
