@@ -1,0 +1,409 @@
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+#include <locale.h>
+#include <stdlib.h>
+
+//1 questao
+
+int menorNumero(int n1, int n2) {
+
+	if (n1 > n2)
+		return n2;
+	else
+		return n1;
+	
+
+}
+
+// 2 questao 
+
+double distanciaPontos(double x1, double x2, double y1, double y2) {
+
+	double distX, distY;
+	double potX, potY;
+	double eq;
+	double raiz;
+
+
+	//Definindo a distancia entre os pontos, sempre pegando o maior menos o menor do ponto X
+	if (x1 > x2) {
+		distX = x1 - x2;
+	}
+	else if (x1 < x2) {
+		distX = x2 - x1;
+	}
+	//Definindo a distancia entre os pontos, sempre pegando o maior menos o menor do ponto Y
+	if (y1 > y2) {
+		distY = y1 - y2;
+	}
+	else if (y1 < y2) {
+		distY = y2 - y1;
+	}
+
+	printf("DistX: %lf", distX);
+	printf("\nDistY: %lf", distY);
+
+	/*potX = pow(distX, 2);
+	potY = pow(distY, 2);*/
+
+
+	eq = (pow(distX, 2)) + (pow(distY, 2)); //Definindo que a equacao é igual a distanciaX ao quadrado + distanciaY ao quadrado.
+
+
+
+	 
+
+	return sqrt(eq);
+
+
+	
+
+	
+
+
+
+
+
+}
+
+// 3 questao
+
+int somaDivisores(int n) {
+	
+	int somadiv = 0;
+
+	for (int i = 1; i < n; i++) { // Basicamente o loop vai realizar até chegar no valor, exemplo se o numero for 3, inicia i = 1, if 3 > 1? sim && 3%1 == 0? Sim, ok, somadiv = somadiv+i(1), quando i for igual a 3 ele irá sair 
+		// que foi o que a questao pede, a soma de seus divisores tirando ele mesmo.
+		
+		if ((n > 0) && (n % i == 0)) {
+			somadiv = somadiv + i;
+			
+		}
+
+	}
+
+	return somadiv;
+
+}
+
+// 4 questao
+
+int isPar(int n) {
+
+
+	if (n % 2 == 0)
+		return 1; // se for par  retornar 1
+	else
+		return 0; // se for impar retornar 0
+
+}
+
+// 5 questao
+
+int isWhat(int n) {
+
+	if (n > 0)
+		return 1; // positivo
+	else if (n == 0)
+		return 0; // o valor eh igual a zero
+	else if (n < 0)
+		return -1; // negativo
+}
+
+// 6 questao
+
+void tabuadaNum(int n) {
+
+	int resultado;
+
+	for (int i = 0; i <= 10; i++) {
+
+		resultado = n * i;
+
+		printf("%d x %d eh igual a %d\n", n, i, resultado); // eu digo que resultado eh igual a n vezes i que sera nosso multiplicador, logo dentro de um loop de 0a10 ele realiza as operacoes
+
+
+	}
+}
+
+// 7 Questao
+
+void MaiorMenor(int n[]) {
+
+	int maior = n[0]; // inicializando 
+	int menor = n[0]; // inicializando
+
+
+			// Maior numero
+	for (int i = 0; i < 10; i++) {
+
+		
+		if (n[i] > maior)
+			maior = n[i];
+		else
+			maior = maior;
+	}
+
+			// Menor numero
+
+	for (int i = 0; i < 10; i++) {
+
+		if (n[i] < menor)
+			menor = n[i];
+		else
+			menor = menor;
+
+	}
+
+	printf("O maior numero dentro desse array encontrado foi: %d\nE o menor: %d\n\n", maior, menor);
+
+}
+
+
+// MENU GERAL
+
+int menu() {
+	// Criando variaveis para cada questao.
+
+	//1q
+	int n1, n2;
+	//2q
+	double x1, x2, y1, y2;
+	//3q
+	int num1, num2, num3, num4, num5, opc;
+	//4q
+	int tipoNum;
+	//5q
+	int oqE;
+
+	//6q
+	int tabuada;
+
+	//7q
+	int n[10];
+
+
+	setlocale(LC_ALL, "Portuguese");
+
+	char op;
+
+	do {
+		system("CLS");
+		printf("Escolha a questao que deseja visualizar a solucao\n\n");
+		printf("[1] Escreva uma função que receba dois números inteiros retorne o menor número.\n");
+		printf("\n[2]Escreva uma função que calcule e retorne a distância entre dois pontos (x1, y1) e (x2, y2). Todos os números e valores de retorno devem ser do tipo float");
+		printf("\nPrimeiro, encontra a distancia entre os pontos x1 e x2\nSegundo, encontra a distancia entre os pontos y1 e y2\nTerceiro, faz a conta = aˆ2 + bˆ2\nQuarto, acha a raiz da equação\nRetorna o resultado\n");
+		printf("\n[3]Escreva um programa que leia 5 números inteiros positivos (utilize uma função que leia  esse  número e  verifique se ele é positivo).  Para cada número informado escrever a soma de seus	divisores (exceto ele mesmo). \nUtilize a função SomaDivisores para obter a soma.");
+		printf("\nNome da função: somaDivisores\nDescrição: Calcula a soma dos divisores do número informado (exceto ele mesmo).\nEntrada: Um número inteiro e positivo\nSaída: A soma dos divisores\nExemplo: Para o valor 8 : 1 + 2 + 4 = 7");
+		printf("\n\n[4]Faça uma função que recebe um valor inteiro e verifica se o valor é par. A função deve retornar 1 se o número for par e 0 se for ímpar 8.\n");
+		printf("\n[5]Faça  uma função que recebe um valor inteiro e verifica se o valor é positivo,  negativo ou zero.  A função deve retornar 1 para valores positivos, -1 para negativos e 0 para o valor 0.\n");
+		printf("\n[6]Fazer um programa em C que imprime em uma função a tabela com a tabuada de 1 a 9 conforme o usuario informe via tela.\n");
+		printf("\n\n[7]Fazer um programa em C que lê 10 valores e imprime em uma função o maior e o menor valores lidos.\n\n");
+
+		printf("Escolha qual das questoes acima voce deseja visualizar a solucao: ");
+		scanf("%c", &op);
+		getchar(); // limpando buffer
+
+
+
+
+
+
+	} while (op < '1' || op > '7');
+
+	switch (op) {
+	case '1':
+		system("CLS");
+		printf("Você escolheu a 1° questao\n\n");
+		printf("Enunciado: \n\n");
+
+		printf("Escreva uma função que receba dois números inteiros retorne o menor número.\n\n-------------\n");
+
+		printf("Insira dois numeros inteiros: ");
+		printf("N1: ");
+		scanf("%d", &n1);
+		getchar();
+		printf("\nN2: ");
+		scanf("%d", &n2);
+		getchar();
+
+		printf("O menor numero entre os dois eh %d", menorNumero(n1, n2));
+		printf("\n\n");
+
+		system("PAUSE");
+		break;
+	case '2':
+		system("CLS");
+		printf("Você escolheu a 2° questao\n\n");
+		printf("Enunciado: \n\n");
+
+		printf("\n[2]Escreva uma função que calcule e retorne a distância entre dois pontos (x1, y1) e (x2, y2). Todos os números e valores de retorno devem ser do tipo float");
+		printf("\nPrimeiro, encontra a distancia entre os pontos x1 e x2\nSegundo, encontra a distancia entre os pontos y1 e y2\nTerceiro, faz a conta = aˆ2 + bˆ2\nQuarto, acha a raiz da equação\nRetorna o resultado\n");
+
+		printf("Escolha a distancia dos pontos x1,x2,y1,y2");
+		printf("\nx1: ");
+		scanf("%lf", &x1);
+		getchar();
+		printf("\nx2: ");
+		scanf("%lf", &x2);
+		getchar();
+		printf("\ny1: ");
+		scanf("%lf", &y1);
+		getchar();
+		printf("\ny2: ");
+		scanf("%lf", &y2);
+		getchar();
+
+		printf("A raiz quadrada da soma do quadrado das distancias eh %lf", distanciaPontos(x1, x2, y1, y2));
+		printf("\n\n");
+		system("PAUSE");
+
+		break;
+	case '3':
+		system("CLS");
+		printf("Você escolheu a 3° questao\n\n");
+		printf("Enunciado: \n\n");
+
+		printf("\n[3]Escreva um programa que leia 5 números inteiros positivos (utilize uma função que leia  esse  número e  verifique se ele é positivo).  Para cada número informado escrever a soma de seus	divisores (exceto ele mesmo). \nUtilize a função SomaDivisores para obter a soma.");
+		printf("\nNome da função: somaDivisores\nDescrição: Calcula a soma dos divisores do número informado (exceto ele mesmo).\nEntrada: Um número inteiro e positivo\nSaída: A soma dos divisores\nExemplo: Para o valor 8 : 1 + 2 + 4 = 7");
+
+		printf("Insira cinco numeros inteiros positivos\n");
+		printf("\nNum1: ");
+		scanf("%d", &num1);
+		getchar();
+		printf("\nNum2: ");
+		scanf("%d", &num2);
+		getchar();
+		printf("\nNum3: ");
+		scanf("%d", &num3);
+		getchar();
+		printf("\nNum4: ");
+		scanf("%d", &num4);
+		getchar();
+		printf("\nNum5: ");
+		scanf("%d", &num5);
+		getchar();
+
+		do {
+
+			printf("[1]N1\n[2]N2\n[3]N3\n[4]N4\n[5]N5\n");
+			printf("Escolha um dos numeros acima para saber a soma de todos seus divisores: ");
+			scanf("%d", &opc);
+		} while (opc < 1 || opc > 5);
+
+		if (opc == 1) {
+			printf("A soma dos divisores eh %d", somaDivisores(num1));
+		}
+		else if (opc == 2) {
+			printf("A soma dos divisores eh %d", somaDivisores(num2));
+		}
+		else if (opc == 3) {
+			printf("A soma dos divisores eh %d", somaDivisores(num3));
+		}
+		else if (opc == 4) {
+			printf("A soma dos divisores eh %d", somaDivisores(num4));
+		}
+		else if (opc == 5) {
+			printf("A soma dos divisores eh %d", somaDivisores(num5));
+		}
+
+		printf("\n\n");
+
+		system("PAUSE");
+
+
+		break;
+	case '4':
+
+		system("CLS");
+		printf("Você escolheu a 4° questao\n\n");
+		printf("Enunciado: \n\n");
+		printf("\n\n[4]Faça uma função que recebe um valor inteiro e verifica se o valor é par. A função deve retornar 1 se o número for par e 0 se for ímpar 8.\n");
+
+		printf("Por favor insira um numero: ");
+		scanf("%d", &tipoNum);
+		printf("\nLegenda\n[1]O numero eh par\n[0]O numero eh impar\nO retorno da funcao foi: %d", isPar(tipoNum));
+
+		printf("\n\n");
+
+		system("PAUSE");
+
+		break;
+	case '5':
+		system("CLS");
+		printf("Você escolheu a 5° questao\n\n");
+		printf("Enunciado: \n\n");
+		printf("\n[5]Faça  uma função que recebe um valor inteiro e verifica se o valor é positivo,  negativo ou zero.  A função deve retornar 1 para valores positivos, -1 para negativos e 0 para o valor 0.\n");
+		printf("Insira um numero: ");
+		scanf("%d", &oqE);
+		printf("O numero inserido eh: %d ", isWhat(oqE));
+
+		printf("\n\n");
+
+		system("PAUSE");
+		break;
+	case '6':
+		system("CLS");
+		printf("Você escolheu a 6° questao\n\n");
+		printf("Enunciado: \n\n");
+		printf("\n[6]Fazer um programa em C que imprime em uma função a tabela com a tabuada de 1 a 9 conforme o usuario informe via tela.\n");
+
+		do {
+			printf("Insira um numero entre 1 e 9 e descubra a tabuada desse numero: ");
+			scanf("%d", &tabuada);
+			getchar();
+		} while (tabuada < 1 || tabuada > 9);
+		tabuadaNum(tabuada);
+
+		printf("\n\n");
+
+		system("PAUSE");
+
+		break;
+	case '7':
+		system("CLS");
+		printf("Você escolheu a 7° questao\n\n");
+		printf("Enunciado: \n\n");
+
+		printf("\n\n[7]Fazer um programa em C que lê 10 valores e imprime em uma função o maior e o menor valores lidos.\n\n");
+		printf("Insira 10 valores\n");
+		for (int i = 0; i < 10; i++) {
+			printf("Num: ");
+			scanf("%d", &n[i]);
+			printf("\n");
+		}
+		MaiorMenor(n);
+
+		printf("\n\n");
+
+		system("PAUSE");
+
+		return 7;
+
+
+		break;
+
+		
+
+	}
+
+
+
+}
+
+
+
+
+int main() {
+	int opc;
+
+	do {
+		opc = menu();
+
+	} while (opc != 7);
+
+	return 0;
+
+}
+
